@@ -9,7 +9,6 @@ import android.graphics.drawable.StateListDrawable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,8 +27,8 @@ import com.azhon.appupdate.service.DownloadService;
 import com.azhon.appupdate.utils.ApkUtil;
 import com.azhon.appupdate.utils.Constant;
 import com.azhon.appupdate.utils.DensityUtil;
-import com.azhon.appupdate.utils.ScreenUtil;
 
+import com.self.lib.util.ScreenUtil;
 import java.io.File;
 
 /**
@@ -74,9 +73,10 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
         dialogButtonTextColor = configuration.getDialogButtonTextColor();
         dialogButtonColor = configuration.getDialogButtonColor();
         dialogProgressBarColor = configuration.getDialogProgressBarColor();
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_update, null);
+        View view = View.inflate(context,R.layout.dialog_update, null);
+//        View view = LayoutInflater.from(context).inflate(R.layout.dialog_update, null);
         setContentView(view);
-        setWindowSize(context);
+        setWindowSize();
         initView(view);
     }
 
@@ -138,10 +138,11 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
         description.setText(manager.getApkDescription());
     }
 
-    private void setWindowSize(Context context) {
+    private void setWindowSize() {
         Window dialogWindow = this.getWindow();
+        assert dialogWindow != null;
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = (int) (ScreenUtil.getWith(context) * 0.7f);
+        lp.width = (int) (ScreenUtil.getScreenWidth() * 0.7f);
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.gravity = Gravity.CENTER;
         dialogWindow.setAttributes(lp);

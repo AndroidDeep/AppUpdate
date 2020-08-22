@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -30,7 +30,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.github.AndroidDeep:AppLib:1.0.9'
+//    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
 
 Properties properties = new Properties()
@@ -60,37 +61,37 @@ bintray {
     }
     configurations = ['archives']
 }
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
-                //项目描述
-                description '一个简单、轻量、可随意定制 的Android版本更新库 🚀'
-                url siteUrl
-                // 填写开源协议
-                licenses {
-                    license {
-                        name 'Apache-2.0'
-                        url ' http://www.apache.org/licenses/LICENSE-2.0'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'azhon'
-                        //填写邮件地址
-                        email 'azhon.cn@gmail.com'
-                    }
-                }
-                scm {
-                    connection rootProject.ext.gitUrl
-                    developerConnection rootProject.ext.gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
+//install {
+//    repositories.mavenInstaller {
+//        pom {
+//            project {
+//                packaging 'aar'
+//                //项目描述
+//                description '一个简单、轻量、可随意定制 的Android版本更新库 🚀'
+//                url siteUrl
+//                // 填写开源协议
+//                licenses {
+//                    license {
+//                        name 'Apache-2.0'
+//                        url ' http://www.apache.org/licenses/LICENSE-2.0'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'azhon'
+//                        //填写邮件地址
+//                        email 'azhon.cn@gmail.com'
+//                    }
+//                }
+//                scm {
+//                    connection rootProject.ext.gitUrl
+//                    developerConnection rootProject.ext.gitUrl
+//                    url siteUrl
+//                }
+//            }
+//        }
+//    }
+//}
 //打包源码
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs

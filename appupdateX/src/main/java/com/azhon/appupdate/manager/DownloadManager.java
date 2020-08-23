@@ -13,6 +13,7 @@ import com.azhon.appupdate.service.DownloadService;
 import com.azhon.appupdate.utils.ApkUtil;
 import com.azhon.appupdate.utils.Constant;
 import com.azhon.appupdate.utils.LogUtil;
+import com.self.lib.util.AppUtil;
 
 /**
  * 项目名:    AppUpdate
@@ -317,16 +318,16 @@ public class DownloadManager {
     /**
      * 开始下载
      */
-    public void download() {
+    public void download(boolean withDialog) {
         if (!checkParams()) {
             //参数设置出错....
             return;
         }
-        if (checkVersionCode()) {
+        if (!withDialog) {
             context.startService(new Intent(context, DownloadService.class));
         } else {
             //对版本进行判断，是否显示升级对话框
-            if (apkVersionCode > ApkUtil.getVersionCode(context)) {
+            if (apkVersionCode > AppUtil.getAppVersionCode()) {
                 dialog = new UpdateDialog(context);
                 dialog.show();
             } else {

@@ -10,6 +10,7 @@ import android.os.Build;
 
 import androidx.core.content.FileProvider;
 
+import com.self.lib.util.AppUtil;
 import java.io.File;
 
 /**
@@ -48,36 +49,20 @@ public final class ApkUtil {
     }
 
     /**
-     * 获取当前app的升级版本号
-     *
-     * @param context 上下文
-     */
-    public static int getVersionCode(Context context) {
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionCode;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    /**
      * 删除旧版本apk
      *
      * @param context    上下文
      * @param oldApkPath 旧版本保存的文件路径
      * @return 是否删除成功
      */
-    public static boolean deleteOldApk(Context context, String oldApkPath) {
-        int curVersionCode = getVersionCode(context);
+    public static boolean deleteOldApk(Context context, String oldApkPath,boolean ignoreVersion) {
+        int curVersionCode = AppUtil.getAppVersionCode();
         //文件存在
         try {
             File apk = new File(oldApkPath);
             if (apk.exists()) {
                 int oldVersionCode = getVersionCodeByPath(context, oldApkPath);
-                if (curVersionCode > oldVersionCode) {
+                if (ignoreVersion || curVersionCode >= oldVersionCode) {
                     return apk.delete();
                 }
             }
@@ -96,23 +81,9 @@ public final class ApkUtil {
     public static int getVersionCodeByPath(Context context, String path) {
         PackageManager packageManager = context.getPackageManager();
         PackageInfo packageInfo = packageManager.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
+        if(packageInfo == null)
+            return 0;
         return packageInfo.versionCode;
-    }
-
-    /**
-     * 获取当前app的版本号
-     *
-     * @param context 上下文
-     */
-    public static String getVersionName(Context context) {
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionName;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "1.0.0";
-        }
     }
 
     /**

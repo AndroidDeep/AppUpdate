@@ -25,6 +25,7 @@ import com.azhon.appupdate.utils.NotificationUtil;
 
 import java.io.File;
 import java.util.List;
+import splitties.init.AppCtxKt;
 
 /**
  * 项目名:    AppUpdate
@@ -44,6 +45,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     private String apkUrl;
     private String apkName;
     private String downloadPath;
+    private int apkVersionCode;
     private List<OnDownloadListener> listeners;
     private boolean showNotification;
     private boolean showBgdToast;
@@ -71,6 +73,7 @@ public final class DownloadService extends Service implements OnDownloadListener
         apkName = downloadManager.getApkName();
         downloadPath = downloadManager.getDownloadPath();
         smallIcon = downloadManager.getSmallIcon();
+        apkVersionCode = downloadManager.getApkVersionCode();
         //创建apk文件存储文件夹
         FileUtil.createDirDirectory(downloadPath);
 
@@ -99,8 +102,11 @@ public final class DownloadService extends Service implements OnDownloadListener
      */
     private boolean checkApkMD5() {
         if (FileUtil.fileExists(downloadPath, apkName)) {
-            String fileMD5 = FileUtil.getFileMD5(FileUtil.createFile(downloadPath, apkName));
-            return fileMD5.equalsIgnoreCase(downloadManager.getApkMD5());
+//            String fileMD5 = FileUtil.getFileMD5(FileUtil.createFile(downloadPath, apkName));
+//            return fileMD5.equalsIgnoreCase(downloadManager.getApkMD5());
+            File apkFile = FileUtil.createFile(downloadPath, apkName);
+            int oldVersionCode = ApkUtil.getVersionCodeByPath(AppCtxKt.getAppCtx(), apkFile.getPath());
+            return apkVersionCode == oldVersionCode;
         }
         return false;
     }

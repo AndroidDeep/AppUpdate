@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements OnDownloadListene
                         manager.setApkName("ESFileExplorer.apk")
                                 .setApkUrl(url)
                                 .setSmallIcon(R.mipmap.ic_launcher)
-                                .download();
+                                .download(false);
                     }
                 }).create().show();
     }
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements OnDownloadListene
         manager.setApkName("ESFileExplorer.apk")
                 .setApkUrl(url)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .download();
+                .download(false);
     }
 
     private void startUpdate3() {
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnDownloadListene
                 .setApkSize("20.4")
                 .setApkDescription(getString(R.string.dialog_msg))
 //                .setApkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
-                .download();
+                .download(true);
     }
 
     @Override

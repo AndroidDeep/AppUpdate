@@ -8,9 +8,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
 import com.azhon.appupdate.R;
 import com.azhon.appupdate.base.BaseHttpDownloadManager;
 import com.azhon.appupdate.config.UpdateConfiguration;
@@ -22,7 +20,6 @@ import com.azhon.appupdate.utils.Constant;
 import com.azhon.appupdate.utils.FileUtil;
 import com.azhon.appupdate.utils.LogUtil;
 import com.azhon.appupdate.utils.NotificationUtil;
-
 import java.io.File;
 import java.util.List;
 import splitties.init.AppCtxKt;

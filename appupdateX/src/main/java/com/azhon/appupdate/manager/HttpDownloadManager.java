@@ -1,13 +1,11 @@
 package com.azhon.appupdate.manager;
 
 import androidx.annotation.NonNull;
-
 import com.azhon.appupdate.base.BaseHttpDownloadManager;
 import com.azhon.appupdate.listener.OnDownloadListener;
 import com.azhon.appupdate.utils.Constant;
 import com.azhon.appupdate.utils.FileUtil;
 import com.azhon.appupdate.utils.LogUtil;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;

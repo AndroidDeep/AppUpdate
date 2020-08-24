@@ -1,14 +1,11 @@
 package com.azhon.appupdate.config;
 
 import android.app.NotificationChannel;
-
 import androidx.annotation.ColorInt;
-
 import com.azhon.appupdate.base.BaseHttpDownloadManager;
 import com.azhon.appupdate.listener.OnButtonClickListener;
 import com.azhon.appupdate.listener.OnDownloadListener;
 import com.azhon.appupdate.utils.LogUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package com.azhon.appupdate.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +34,7 @@ public final class SharePreUtil {
      */
     public static void putString(Context mContext, String key, String values) {
         SharedPreferences sp = mContext.getSharedPreferences(SHARE_NAME, Context.MODE_PRIVATE);
-        sp.edit().putString(key, values).commit();
+        sp.edit().putString(key, values).apply();
     }
 
 
@@ -62,7 +61,7 @@ public final class SharePreUtil {
      */
     public static void putBoolean(Context mContext, String key, boolean values) {
         SharedPreferences sp = mContext.getSharedPreferences(SHARE_NAME, Context.MODE_PRIVATE);
-        sp.edit().putBoolean(key, values).commit();
+        sp.edit().putBoolean(key, values).apply();
     }
 
     /**
@@ -87,7 +86,7 @@ public final class SharePreUtil {
      */
     public static void putInt(Context mContext, String key, int values) {
         SharedPreferences sp = mContext.getSharedPreferences(SHARE_NAME, Context.MODE_PRIVATE);
-        sp.edit().putInt(key, values).commit();
+        sp.edit().putInt(key, values).apply();
     }
 
     /**
@@ -112,7 +111,7 @@ public final class SharePreUtil {
     public static void deleShare(Context mContext, String key) {
         SharedPreferences sp = mContext.getSharedPreferences(SHARE_NAME, Context.MODE_PRIVATE);
         //单个清理
-        sp.edit().remove(key).commit();
+        sp.edit().remove(key).apply();
     }
 
     /**
@@ -123,7 +122,7 @@ public final class SharePreUtil {
     public static void deleShareAll(Context mContext) {
         SharedPreferences sp = mContext.getSharedPreferences(SHARE_NAME, Context.MODE_PRIVATE);
         //全部清理
-        sp.edit().clear().commit();
+        sp.edit().clear().apply();
     }
 
     /**

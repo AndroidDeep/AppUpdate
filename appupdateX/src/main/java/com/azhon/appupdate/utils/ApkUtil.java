@@ -7,9 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-
 import androidx.core.content.FileProvider;
-
 import com.self.lib.util.AppUtil;
 import java.io.File;
 
@@ -56,7 +54,7 @@ public final class ApkUtil {
      * @return 是否删除成功
      */
     public static boolean deleteOldApk(Context context, String oldApkPath,boolean ignoreVersion) {
-        int curVersionCode = AppUtil.getAppVersionCode();
+        int curVersionCode = AppUtil.getAppVersionCode(null);
         //文件存在
         try {
             File apk = new File(oldApkPath);

@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.Toast;
-
 import com.azhon.appupdate.R;
 import com.azhon.appupdate.base.BaseHttpDownloadManager;
 import com.azhon.appupdate.config.UpdateConfiguration;
 import com.azhon.appupdate.dialog.UpdateDialog;
 import com.azhon.appupdate.service.DownloadService;
-import com.azhon.appupdate.utils.ApkUtil;
 import com.azhon.appupdate.utils.Constant;
 import com.azhon.appupdate.utils.LogUtil;
 import com.self.lib.util.AppUtil;
@@ -49,7 +47,7 @@ public class DownloadManager {
     /**
      * 是否提示用户 "当前已是最新版本"
      * <p>
-     * {@link #download()}
+     * {@link #download(boolean)} )}
      */
     private boolean showNewerToast = false;
     /**
@@ -327,7 +325,7 @@ public class DownloadManager {
             context.startService(new Intent(context, DownloadService.class));
         } else {
             //对版本进行判断，是否显示升级对话框
-            if (apkVersionCode > AppUtil.getAppVersionCode()) {
+            if (apkVersionCode > AppUtil.getAppVersionCode(null)) {
                 dialog = new UpdateDialog(context);
                 dialog.show();
             } else {
